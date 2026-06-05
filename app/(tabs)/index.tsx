@@ -1,29 +1,22 @@
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 export default function Index() {
-  const [count, setCount] = useState(0);
+  const [text, setText] = useState("");
+  const [submitted, setSubmitted] = useState("");
 
   return (
     <View style={styles.container}>
-      <Text style={styles.count}>{count}</Text>
-
-      <TouchableOpacity
-        onPress={() => {
-          setCount(count + 1);
+      {/* TextInput으로 입력받고 */}
+      <TextInput
+        value={text}
+        onChangeText={(value) => {
+          setText(value);
         }}
-      >
-        <Text>+</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          if (count > 0) {
-            setCount(count - 1);
-          }
-        }}
-      >
-        <Text>-</Text>
-      </TouchableOpacity>
+        placeholder="텍스트를 입력해주세요"
+      ></TextInput>
+      {/* 버튼 누르면 submitted에 저장해서 보여줘요 */}
+      <Button title="제출" onPress={() => setSubmitted(text)}></Button>
+      <Text>{submitted}</Text>
     </View>
   );
 }
