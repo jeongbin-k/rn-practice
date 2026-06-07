@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 export default function Index() {
   const [text, setText] = useState("");
-  const [submitted, setSubmitted] = useState("");
+  const [todos, setTodos] = useState<string[]>([]);
 
   return (
     <View style={styles.container}>
@@ -16,10 +16,18 @@ export default function Index() {
       <Button
         title="제출"
         onPress={() => {
-          setSubmitted(text);
+          if (text.trim() === "") return;
+          setTodos([...todos, text]);
+          setText("");
         }}
       ></Button>
-      <Text>{submitted}</Text>
+      <View style={styles.listContainer}>
+        {todos.map((todo, index) => (
+          <Text key={index} style={styles.todoText}>
+            {todo}
+          </Text>
+        ))}
+      </View>
     </View>
   );
 }
@@ -29,5 +37,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  input: {
+    width: 200,
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 10,
+  },
+  listContainer: {
+    marginTop: 20,
+  },
+  todoText: {
+    fontSize: 18,
+    marginVertical: 4,
   },
 });
