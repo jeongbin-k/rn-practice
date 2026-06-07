@@ -2,23 +2,21 @@ import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 export default function Index() {
   const [text, setText] = useState("");
-  const [submitted, setSubmmited] = useState("");
+  const [submitted, setSubmitted] = useState("");
 
   return (
     <View style={styles.container}>
-      {/* TextInput으로 입력받고 */}
-      {/* 버튼 누르면 submitted에 저장해서 보여줘요 */}
       <TextInput
         value={text}
         onChangeText={(value) => {
           setText(value);
         }}
-        placeholder="텍스틀 입력해주세요."
+        placeholder="오늘 할일을 입력해주세요."
       />
       <Button
         title="제출"
         onPress={() => {
-          setSubmmited(text);
+          setSubmitted(text);
         }}
       ></Button>
       <Text>{submitted}</Text>
@@ -31,10 +29,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  count: {
-    fontSize: 48,
-    fontWeight: "bold",
-    marginBottom: 20,
   },
 });
