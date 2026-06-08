@@ -11,15 +11,16 @@ export default function Index() {
         onChangeText={(value) => {
           setText(value);
         }}
-        placeholder="오늘 할일을 입력해주세요."
+        placeholder="오늘 할일을 입력하세요."
+        style={styles.input}
       />
       <Button
-        title="제출"
         onPress={() => {
           if (text.trim() === "") return;
           setTodos([...todos, text]);
           setText("");
         }}
+        title="확인"
       ></Button>
       <View style={styles.listContainer}>
         {todos.map((todo, index) => (
