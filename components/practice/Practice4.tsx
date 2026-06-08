@@ -83,14 +83,15 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   todoItem: {
+    width: 200,
     flexDirection: "row", // 체크박스 + 텍스트 가로 배치
     alignItems: "center",
     marginVertical: 4,
     gap: 8,
   },
   checkbox: {
-    width: 20,
-    height: 20,
+    width: 15,
+    height: 15,
     borderRadius: 50,
     borderWidth: 1,
     borderStyle: "dashed",
