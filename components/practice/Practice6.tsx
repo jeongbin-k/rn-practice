@@ -11,7 +11,9 @@ export default function Practice6() {
 
   // 삭제 함수
   const deleteMemo = (index: number) => {
-    setlists(lists.filter((_, i) => i !== index));
+    const deleteI = lists.filter((_, i) => i !== index);
+    setlists(deleteI);
+    // setlists(lists.filter((_, i) => i !== index));
   };
 
   return (
