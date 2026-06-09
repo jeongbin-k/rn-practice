@@ -36,11 +36,9 @@ export default function Practice5() {
       />
       <Button
         onPress={() => {
-          const dummy = Array.from({ length: 100 }, (_, i) => ({
-            text: `할일 ${i + 1}`,
-            done: false,
-          }));
-          setTodos([...todos, ...dummy]);
+          if (text.trim() === "") return;
+          setTodos([...todos, { text: text, done: false }]);
+          setText("");
         }}
         title="확인"
       ></Button>
@@ -79,6 +77,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     width: "100%",
+    height: 150,
     marginTop: 20,
     backgroundColor: "rgba(0, 0, 0, 0.7)",
     alignItems: "center",
