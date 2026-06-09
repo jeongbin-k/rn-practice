@@ -1,19 +1,20 @@
 import { useState } from "react";
 import {
   Button,
+  FlatList,
   Pressable,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
+
 type Todo = {
   text: string;
   done: boolean;
 };
-export default function Pratice4() {
+export default function Practice5() {
   const [text, setText] = useState("");
-  // todos 구조를 string[] → 객체 배열로 변경
   const [todos, setTodos] = useState<Todo[]>([]);
 
   // 토글 함수 추가 (체크/언체크)
@@ -24,36 +25,41 @@ export default function Pratice4() {
       ),
     );
   };
-
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
         value={text}
         onChangeText={(value) => {
           setText(value);
         }}
-        placeholder="할 일을 입력해주세요."
+        style={styles.input}
       />
       <Button
         onPress={() => {
-          if (text.trim() === "") return;
-          setTodos([...todos, { text: text, done: false }]);
-          setText("");
+          const dummy = Array.from({ length: 100 }, (_, i) => ({
+            text: `할일 ${i + 1}`,
+            done: false,
+          }));
+          setTodos([...todos, ...dummy]);
         }}
         title="확인"
       ></Button>
       <View style={styles.listContainer}>
-        {todos.map((todo, index) => (
-          <Pressable
-            key={index}
-            onPress={() => toggleTodo(index)}
-            style={styles.todoItem}
-          >
-            <View style={[styles.checkbox, todo.done && styles.checkboxDone]} />
-            <Text style={styles.todoText}>{todo.text}</Text>
-          </Pressable>
-        ))}
+        <FlatList
+          data={todos}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => (
+            <Pressable
+              onPress={() => toggleTodo(index)}
+              style={styles.todoItem}
+            >
+              <View
+                style={[styles.checkbox, item.done && styles.checkboxDone]}
+              />
+              <Text style={styles.todoText}>{item.text}</Text>
+            </Pressable>
+          )}
+        />
       </View>
     </View>
   );

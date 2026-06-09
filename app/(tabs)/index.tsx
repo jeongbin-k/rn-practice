@@ -1,5 +1,5 @@
-import Practice4 from "../../components/practice/Practice4";
+import Practice5 from "../../components/practice/Practice5";
 
 export default function Index() {
-  return <Practice4 />;
+  return <Practice5 />;
 }
