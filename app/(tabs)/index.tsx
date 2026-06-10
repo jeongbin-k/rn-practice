@@ -1,8 +1,8 @@
 // 숫자가 0부터 1초마다 올라가요
 // 시작 / 정지 버튼
 
-import Practice7 from "../../components/practice/Practice7";
+import Practice8 from "../../components/practice/Practice8";
 
 export default function Index() {
-  return <Practice7 />;
+  return <Practice8 />;
 }
